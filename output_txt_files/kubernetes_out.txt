@@ -3,3 +3,45 @@ NAME                           READY   STATUS    RESTARTS   AGE
 predict-app-6fdbfbf87f-wpspp   1/1     Running   0          113s
 Forwarding from 127.0.0.1:8000 -> 80
 Forwarding from [::1]:8000 -> 80
+
+sterga02@EMAL20N3F1YSNFP:~/aws_course/udacity-project$ ./make_prediction.sh
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
+
+
+sterga02@EMAL20N3F1YSNFP:~/aws_course/udacity-project$ kubectl logs predict-app-6fdbfbf87f-wpspp
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 129-516-115
+[2022-09-15 13:27:58,832] INFO in app: JSON payload:
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2022-09-15 13:27:58,845] INFO in app: Inference payload DataFrame:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2022-09-15 13:27:58,852] INFO in app: Scaling Payload:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2022-09-15 13:27:58,855] INFO in app: Prediction Output:
+[20.35373177134412]
+127.0.0.1 - - [15/Sep/2022 13:27:58] "POST /predict HTTP/1.1" 200 -
+[2022-09-15 13:31:30,662] INFO in app: JSON payload:
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2022-09-15 13:31:30,674] INFO in app: Inference payload DataFrame:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2022-09-15 13:31:30,682] INFO in app: Scaling Payload:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2022-09-15 13:31:30,685] INFO in app: Prediction Output:
+[20.35373177134412]
+127.0.0.1 - - [15/Sep/2022 13:31:30] "POST /predict HTTP/1.1" 200 -
